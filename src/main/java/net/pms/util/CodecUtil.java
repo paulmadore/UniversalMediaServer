@@ -46,21 +46,22 @@ public class CodecUtil {
 	 * parsing the "ffmpeg_formats.txt" resource. 
 	 */
 	private static void initCodecs() {
-		InputStream is = CodecUtil.class.getClassLoader().getResourceAsStream("resources/ffmpeg_formats.txt");
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		String line = null;
+		try (InputStream is = CodecUtil.class.getClassLoader().getResourceAsStream("resources/ffmpeg_formats.txt")) {
+			String line;
 
-		try {
-			while ((line = br.readLine()) != null) {
-				if (line.contains(" ")) {
-					codecs.add(line.substring(0, line.indexOf(' ')));
-				} else {
-					codecs.add(line);
+			try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+				while ((line = br.readLine()) != null) {
+					if (line.contains(" ")) {
+						codecs.add(line.substring(0, line.indexOf(' ')));
+					} else {
+						codecs.add(line);
+					}
 				}
-			}
 
-			br.close();
-			codecs.add("iso");
+				codecs.add("iso");
+			} catch (IOException e) {
+				LOGGER.error("Error while retrieving codec list", e);
+			}
 		} catch (IOException e) {
 			LOGGER.error("Error while retrieving codec list", e);
 		}

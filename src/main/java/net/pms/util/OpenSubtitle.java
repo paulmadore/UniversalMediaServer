@@ -460,17 +460,13 @@ public class OpenSubtitle {
 		URLConnection connection = u.openConnection();
 		connection.setDoInput(true);
 		connection.setDoOutput(true);
-		InputStream in = connection.getInputStream();
-		OutputStream out;
-		try (GZIPInputStream gzipInputStream = new GZIPInputStream(in)) {
-			out = new FileOutputStream(f);
+		try (GZIPInputStream gzipInputStream = new GZIPInputStream(connection.getInputStream()); OutputStream out = new FileOutputStream(f)) {
 			byte[] buf = new byte[4096];
 			int len;
 			while ((len = gzipInputStream.read(buf)) > 0) {
 				out.write(buf, 0, len);
 			}
 		}
-		out.close();
 		if (!PMS.getConfiguration().isLiveSubtitlesKeep()) {
 			int tmo = PMS.getConfiguration().getLiveSubtitlesTimeout();
 			if (tmo <= 0) {

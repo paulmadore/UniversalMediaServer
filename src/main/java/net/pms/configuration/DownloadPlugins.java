@@ -127,10 +127,10 @@ public class DownloadPlugins {
 			if (keyval[0].equalsIgnoreCase("name")) {
 				plugin.name = keyval[1];
 			}
-			if (keyval[0].equalsIgnoreCase("rating")) {
-				// Rating is temporarily switched off
-				// plugin.rating = keyval[1];
-			}
+			// Rating is temporarily switched off
+//			if (keyval[0].equalsIgnoreCase("rating")) {
+//				plugin.rating = keyval[1];
+//			}
 			if (keyval[0].equalsIgnoreCase("desc")) {
 				plugin.desc = keyval[1];
 			}

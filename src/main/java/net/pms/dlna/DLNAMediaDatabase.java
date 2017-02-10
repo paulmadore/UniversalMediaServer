@@ -455,16 +455,16 @@ public class DLNAMediaDatabase implements Runnable {
 	}
 
 	public synchronized void insertData(String name, long modified, int type, DLNAMediaInfo media) {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		try {
-			conn = getConnection();
-			ps = conn.prepareStatement(
+		try (
+			Connection conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement(
 				"INSERT INTO FILES(FILENAME, MODIFIED, TYPE, DURATION, BITRATE, WIDTH, HEIGHT, SIZE, CODECV, "+
 				"FRAMERATE, ASPECT, ASPECTRATIOCONTAINER, ASPECTRATIOVIDEOTRACK, REFRAMES, AVCLEVEL, BITSPERPIXEL, "+
 				"THUMB, CONTAINER, MODEL, EXPOSURE, ORIENTATION, ISO, MUXINGMODE, FRAMERATEMODE, STEREOSCOPY, "+
 				"MATRIXCOEFFICIENTS, TITLECONTAINER, TITLEVIDEOTRACK, VIDEOTRACKCOUNT, IMAGECOUNT, BITDEPTH) VALUES "+
-				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+			)
+		) {
 			ps.setString(1, name);
 			ps.setTimestamp(2, new Timestamp(modified));
 			ps.setInt(3, type);
@@ -621,9 +621,6 @@ public class DLNAMediaDatabase implements Runnable {
 			} else {
 				LOGGER.error(null, se);
 			}
-		} finally {
-			close(ps);
-			close(conn);
 		}
 	}
 

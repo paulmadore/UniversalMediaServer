@@ -1104,7 +1104,6 @@ public class FileUtil {
 
 		if (isCharsetUTF16(charset)) {
 			if (!outputFile.exists()) {
-				BufferedReader reader = null;
 				/*
 				 * This is a strange hack, and I'm not sure if it's needed. I
 				 * did it this way to conform to the tests, which dictates that
@@ -1116,21 +1115,16 @@ public class FileUtil {
 				 * UTF_16BE produces an UTF-8 outputfile with BOM.
 				 * @author Nadahar
 				 */
-				if (charset.equals(StandardCharsets.UTF_16LE)) {
-					reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile), StandardCharsets.UTF_16));
-				} else {
-					reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile), charset));
+				try (
+					BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile), (charset.equals(StandardCharsets.UTF_16LE)) ? StandardCharsets.UTF_16 : charset));
+					BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8))
+				) {
+					int c;
+
+					while ((c = reader.read()) != -1) {
+						writer.write(c);
+					}
 				}
-
-				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8));
-				int c;
-
-				while ((c = reader.read()) != -1) {
-					writer.write(c);
-				}
-
-				writer.close();
-				reader.close();
 			}
 		} else {
 			throw new IllegalArgumentException("File is not UTF-16");

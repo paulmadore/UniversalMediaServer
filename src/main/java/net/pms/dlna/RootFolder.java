@@ -652,7 +652,7 @@ public class RootFolder extends DLNAResource {
 			if (mediaPath != null) {
 				mediaName = mediaPath.toString();
 
-				if (mediaName != null && mediaName.lastIndexOf('/') != -1 && mediaName.lastIndexOf(".aplibrary") != -1) {
+				if (mediaName.lastIndexOf('/') != -1 && mediaName.lastIndexOf(".aplibrary") != -1) {
 					mediaName = mediaName.substring(mediaName.lastIndexOf('/'), mediaName.lastIndexOf(".aplibrary"));
 				} else {
 					mediaName = "unknown library";

@@ -101,7 +101,7 @@ public class AudioUtils {
 			// remap and leave 7.1
 			// inputs to PCM encoder are FL:0 FR:1 RL:2 RR:3 FC:4 LFE:5 SL:6 SR:7
 			mixer = "channels=8:8:0:0:1:4:2:7:3:5:4:1:5:3:6:6:7:2";
-		} else if (numberOfInputChannels == 2) { // 2.0
+//		} else if (numberOfInputChannels == 2) { // 2.0
 			// do nothing for stereo tracks
 		}
 

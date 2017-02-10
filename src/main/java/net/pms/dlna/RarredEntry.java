@@ -105,9 +105,7 @@ public class RarredEntry extends DLNAResource implements IPushOutput {
 		Runnable r = new Runnable() {
 			@Override
 			public void run() {
-				Archive rarFile = null;
-				try {
-					rarFile = new Archive(file);
+				try (Archive rarFile = new Archive(file)) {
 					FileHeader header = null;
 					for (FileHeader fh : rarFile.getFileHeaders()) {
 						if (fh.getFileNameString().equals(fileHeaderName)) {
@@ -123,7 +121,6 @@ public class RarredEntry extends DLNAResource implements IPushOutput {
 					LOGGER.debug("Unpack error, maybe it's normal, as backend can be terminated: " + e.getMessage());
 				} finally {
 					try {
-						rarFile.close();
 						out.close();
 					} catch (IOException e) {
 						LOGGER.debug("Caught exception", e);

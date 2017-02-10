@@ -855,31 +855,24 @@ public class NavigationShareTab {
 					DLNAMediaDatabase database = PMS.get().getDatabase();
 
 					if (database != null) {
-						if (!database.isScanLibraryRunning()) {
-							int option = JOptionPane.showConfirmDialog(
-								looksFrame,
-								Messages.getString("FoldTab.3") + Messages.getString("FoldTab.4"),
-								Messages.getString("Dialog.Question"),
-								JOptionPane.YES_NO_OPTION);
-							if (option == JOptionPane.YES_OPTION) {
-								database.scanLibrary();
-								but5.setIcon(LooksFrame.readImageIcon("button-scan-busy.gif"));
-								but5.setRolloverIcon(LooksFrame.readImageIcon("button-scan-cancel.png"));
-								but5.setToolTipText(Messages.getString("FoldTab.40"));
-							}
-						} else {
-							int option = JOptionPane.showConfirmDialog(
-								looksFrame,
-								Messages.getString("FoldTab.10"),
-								Messages.getString("Dialog.Question"),
-								JOptionPane.YES_NO_OPTION);
-							if (option == JOptionPane.YES_OPTION) {
-								database.stopScanLibrary();
-								looksFrame.setStatusLine(Messages.getString("FoldTab.41"));
-								setScanLibraryEnabled(false);
-								but5.setToolTipText(Messages.getString("FoldTab.41"));
-							}
-						}
+						if (database.isScanLibraryRunning()) {
+  							int option = JOptionPane.showConfirmDialog(
+  								looksFrame,
+  								Messages.getString("FoldTab.10"),
+ 								Messages.getString("Dialog.Question"),
+ 								JOptionPane.YES_NO_OPTION);
+ 							if (option == JOptionPane.YES_OPTION) {
+ 								database.stopScanLibrary();
+ 								looksFrame.setStatusLine(Messages.getString("FoldTab.41"));
+  								setScanLibraryEnabled(false);
+  								but5.setToolTipText(Messages.getString("FoldTab.41"));
+  							}
+ 						} else {
+ 							database.scanLibrary();
+ 							but5.setIcon(LooksFrame.readImageIcon("button-scan-busy.gif"));
+ 							but5.setRolloverIcon(LooksFrame.readImageIcon("button-scan-cancel.png"));
+ 							but5.setToolTipText(Messages.getString("FoldTab.40"));
+  						}
 					}
 				}
 			}
