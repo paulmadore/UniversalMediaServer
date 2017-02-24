@@ -85,10 +85,10 @@ public class SubtitleTypeTest {
 		assertThat(TX3G.getDescription()).isEqualTo("MPEG-4 Timed Text");
 		assertThat(PGS.getDescription()).isEqualTo("Presentation Grapic Stream");
 		assertThat(WEBVTT.getDescription()).isEqualTo("Web Video Text Tracks");
-		assertThat(TEXTST.getDescription()).isEqualTo("HDMV text SubTitles");
-		assertThat(DVBSUB.getDescription()).isEqualTo("DVB SUBtitles");
-		assertThat(EIA608.getDescription()).isEqualTo("EIA-608 Subtitles");
-//		assertThat(EIA708.getDescription()).isEqualTo("EIA-708 Subtitles");
+		assertThat(TEXTST.getDescription()).isEqualTo("HDMV Text SubTitles");
+		assertThat(DVBSUB.getDescription()).isEqualTo("DVB Subtitles");
+		assertThat(EIA608.getDescription()).isEqualTo("EIA-608 subtitles");
+//		assertThat(EIA708.getDescription()).isEqualTo("EIA-708 subtitles");
 	}
 
 	@Test
