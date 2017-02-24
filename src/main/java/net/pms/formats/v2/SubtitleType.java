@@ -47,10 +47,10 @@ public enum SubtitleType {
 	TX3G        (11, "MPEG-4 Timed Text",                         list(),             list("tx3g"),                                                     type.TEXT),
 	PGS         (12, "Presentation Grapic Stream",                list("sup"),        list("S_HDMV/PGS", "PGS", "144"),                                 type.PICTURE),
 	WEBVTT      (13, "Web Video Text Tracks",                     list("vtt"),        list("WebVTT", "S_TEXT/WEBVTT"),                                  type.TEXT),
-	TEXTST      (14, "HDMV text SubTitles",                       list(),             list("S_HDMV/TEXTST"),                                            type.TEXT);
+	TEXTST      (14, "HDMV TEXT SubTitles",                       list(),             list("S_HDMV/TEXTST"),                                            type.TEXT);
 	DVBSUB      (15, "DVB SUBtitles",                             list(),             list("S_DVBSUB"),                                                 type.PICTURE);
-	EIA608      (16, "EIA-608 Subtitles",                         list(),             list("EIA-608"),                                                  type.TEXT);
-//	EIA708      (17, "EIA-708 Subtitles",                         list(),             list("EIA-708"),                                                  type.TEXT);
+	EIA608      (16, "EIA-608 subtitles",                         list(),             list("EIA-608"),                                                  type.TEXT);
+//	EIA708      (17, "EIA-708 subtitles",                         list(),             list("EIA-708"),                                                  type.TEXT);
 	
 	public enum type {TEXT, PICTURE, UNDEF}
 	private final int index;
