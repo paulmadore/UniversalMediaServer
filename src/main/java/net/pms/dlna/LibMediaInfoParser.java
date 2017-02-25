@@ -537,7 +537,7 @@ public class LibMediaInfoParser {
 			format = FormatConfiguration.ALS;
 		} else if (value.startsWith("amr")) {
 			format = FormatConfiguration.AMR;
-		} else if (value.equals("ac-3") || value.startsWith("a_ac3") || value.equals("2000")) {
+		} else if (value.equals("ac-3") || value.equals("ac3") || value.equals("2000")) {
 			format = FormatConfiguration.AC3;
 		} else if (value.equals("celp")) {
 			format = FormatConfiguration.CELP;
