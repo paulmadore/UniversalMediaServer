@@ -769,9 +769,7 @@ public class LibMediaInfoParser {
 	}
 
 	public static String getFPSValue(String value) {
-		if (value.contains("(")) {
-			value = value.substring(0, value.indexOf("("));
-		} else if (value.contains("fps")) {
+		if (value.contains("fps")) {
 			value = value.substring(0, value.indexOf("fps"));
 		}
 			   
