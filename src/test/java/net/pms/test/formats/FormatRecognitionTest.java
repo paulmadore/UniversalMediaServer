@@ -310,7 +310,7 @@ public class FormatRecognitionTest {
 		format = new OGG();
 		format.match("test.ogg");
 		assertFalse("isCompatible() gives the outcome false for OGG", conf.isCompatible(info, format, configuration));
-		
+
 		// RAW: false
 		info = new DLNAMediaInfo();
 		info.setContainer("raw");
