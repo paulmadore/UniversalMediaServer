@@ -1406,7 +1406,7 @@ public class DLNAMediaInfo implements Cloneable {
 					break;
 				case FormatConfiguration.ATRAC:
 					mimeType = HTTPResource.AUDIO_ATRAC_TYPEMIME;
-					break;	
+					break;
 				case FormatConfiguration.MKA:
 					mimeType = HTTPResource.AUDIO_MKA_TYPEMIME;
 					break;
