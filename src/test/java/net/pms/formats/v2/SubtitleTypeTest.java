@@ -82,7 +82,7 @@ public class SubtitleTypeTest {
 		assertThat(USF.getDescription()).isEqualTo("Universal Subtitle Format");
 		assertThat(BMP.getDescription()).isEqualTo("Bitmap");
 		assertThat(DIVX.getDescription()).isEqualTo("DivX subtitles");
-		assertThat(TX3G.getDescription()).isEqualTo("MPEG-4 Timed Text");
+		assertThat(TX3G.getDescription()).isEqualTo("3GPP Timed Text");
 		assertThat(PGS.getDescription()).isEqualTo("Presentation Grapic Stream");
 		assertThat(WEBVTT.getDescription()).isEqualTo("Web Video Text Tracks");
 		assertThat(TEXTST.getDescription()).isEqualTo("HDMV Text SubTitles");
