@@ -44,7 +44,7 @@ public enum SubtitleType {
 	USF         (8,  "Universal Subtitle Format",                 list(),             list("S_TEXT/USF", "S_USF"),                                      type.TEXT),
 	BMP         (9,  "Bitmap",                                    list(),             list("S_IMAGE/BMP"),                                              type.PICTURE),
 	DIVX        (10, "DivX subtitles",                            list(),             list("DXSB"),                                                     type.PICTURE),
-	TX3G        (11, "MPEG-4 Timed Text",                         list(),             list("tx3g"),                                                     type.TEXT),
+	TX3G        (11, "3GPP Timed Text",                           list(),             list("tx3g"),                                                     type.TEXT),
 	PGS         (12, "Presentation Grapic Stream",                list("sup"),        list("S_HDMV/PGS", "PGS", "144"),                                 type.PICTURE),
 	WEBVTT      (13, "Web Video Text Tracks",                     list("vtt"),        list("WebVTT", "S_TEXT/WEBVTT"),                                  type.TEXT),
 	TEXTST      (14, "HDMV Text SubTitles",                       list(),             list("S_HDMV/TEXTST"),                                            type.TEXT);
