@@ -1644,78 +1644,96 @@ public class DLNAMediaInfo implements Cloneable {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("container: ");
-		result.append(container);
-		result.append(", bitrate: ");
-		result.append(bitrate);
+		result.append(getContainer());
 		result.append(", size: ");
-		result.append(size);
-		if (videoTrackCount > 0) {
+		result.append(getSize());
+		if (isVideo()) {
+			result.append(", bitrate: ");
+			result.append(getBitrate());
 			result.append(", video tracks: ");
-			result.append(videoTrackCount);
+			result.append(getVideoTrackCount());
+			result.append(", video codec: ");
+			result.append(getCodecV());
+			result.append(", duration: ");
+			result.append(getDurationString());
+			result.append(", width: ");
+			result.append(getWidth());
+			result.append(", height: ");
+			result.append(getHeight());
+			result.append(", frame rate: ");
+			if (isNotBlank(frameRate)) {
+			result.append(getFrameRate());
+			} else {
+				result.append(getFrameRateMode());
+			}
+			if (isNotBlank(muxingMode)) {
+				result.append(", muxing mode: ");
+				result.append(getMuxingMode());
+			}
+			if (isNotBlank(matrixCoefficients)) {
+				result.append(", matrix coefficients: ");
+				result.append(getMatrixCoefficients());
+			}
+			if (isNotBlank(avcLevel)) {
+				result.append(", avc level: ");
+				result.append(getAvcLevel());
+			}
+//			if (isNotBlank(hevcLevel)) {
+//				result.append(", hevc level: ");
+//				result.append(getHevcLevel());
+			if (videoBitDepth != 8) {
+				result.append(", video bit depth: ");
+				result.append(getVideoBitDepth());
+			}
+			if (hasSubtitles()) {
+				result.append(", subtitle tracks: ");
+				result.append(getSubTrackCount());
+			}
+			if (isNotBlank(fileTitleFromMetadata)) {
+				result.append(", file title from metadata: ");
+				result.append(getFileTitleFromMetadata());
+			}
+			if (isNotBlank(videoTrackTitleFromMetadata)) {
+				result.append(", video track title from metadata: ");
+				result.append(getVideoTrackTitleFromMetadata());
+			}
+			for (DLNAMediaAudio audio : audioTracks) {
+				result.append("\n\tAudio track ");
+				result.append(audio.toString());
+			}
+			for (DLNAMediaSubtitle sub : subtitleTracks) {
+				result.append("\n\tSubtitle track ");
+				result.append(sub.toString());
+			}
 		}
-		if (getAudioTrackCount() > 0) {
+		if (isAudio()) {
+			result.append(", bitrate: ");
+			result.append(getBitrate());
 			result.append(", audio tracks: ");
 			result.append(getAudioTrackCount());
+			result.append(", duration: ");
+			result.append(getDurationString());
+			for (DLNAMediaAudio audio : audioTracks) {
+				result.append("\n\tAudio track ");
+				result.append(audio.toString());
+			}
 		}
-		if (imageCount > 0) {
+		if (isImage()) {
 			result.append(", images: ");
-			result.append(imageCount);
+			result.append(getImageCount());
+			result.append(", width: ");
+			result.append(getWidth());
+			result.append(", height: ");
+			result.append(getHeight());
 		}
-		if (getSubTrackCount() > 0) {
-			result.append(", subtitle tracks: ");
-			result.append(getSubTrackCount());
-		}
-		result.append(", video codec: ");
-		result.append(codecV);
-		result.append(", duration: ");
-		result.append(getDurationString());
-		result.append(", width: ");
-		result.append(width);
-		result.append(", height: ");
-		result.append(height);
-		result.append(", frame rate: ");
-		result.append(frameRate);
 
 		if (thumb != null) {
 			result.append(", thumb size: ");
-			result.append(thumb.length);
-		}
-		if (isNotBlank(muxingMode)) {
-			result.append(", muxing mode: ");
-			result.append(muxingMode);
+			result.append(getThumb().length);
 		}
 
 		result.append(", mime type: ");
-		result.append(mimeType);
-
-		if (isNotBlank(matrixCoefficients)) {
-			result.append(", matrix coefficients: ");
-			result.append(matrixCoefficients);
-		}
-
-		if (isNotBlank(avcLevel)) {
-			result.append(", avc level: ");
-			result.append(avcLevel);
-		}
-
-		if (isNotBlank(fileTitleFromMetadata)) {
-			result.append(", file title from metadata: ");
-			result.append(fileTitleFromMetadata);
-		}
-		if (isNotBlank(videoTrackTitleFromMetadata)) {
-			result.append(", video track title from metadata: ");
-			result.append(videoTrackTitleFromMetadata);
-		}
-
-		for (DLNAMediaAudio audio : audioTracks) {
-			result.append("\n\tAudio track ");
-			result.append(audio.toString());
-		}
-
-		for (DLNAMediaSubtitle sub : subtitleTracks) {
-			result.append("\n\tSubtitle track ");
-			result.append(sub.toString());
-		}
+		result.append(getMimeType());
 
 		return result.toString();
 	}
